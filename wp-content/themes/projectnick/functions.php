@@ -51,5 +51,8 @@ function create_posttype() {
 add_action( 'init', 'create_posttype' );
 
 add_theme_support( 'portfolio-thumbnails' ); 
+add_theme_support( 'menus' );
+
+
 
 ?>

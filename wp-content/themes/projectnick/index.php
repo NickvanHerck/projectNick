@@ -164,9 +164,9 @@
 	<br/>
 <?php
 	
-	$args = array(
+	$portfolio = array(
 				'posts_per_page'=>1,
-				'offset' => 1,
+				'offset' => 2,
 				'category' => 0,
 				'orderby' => 'post_date',
 				'order' => 'DESC',
@@ -179,82 +179,85 @@
 				'suppress_filters' => true
 				); 
 	
-				while ( have_posts() ) : the_post();
-		?>
+				$posts_query = new WP_Query( $portfolio ); ?>
+
+				<?php if ( $posts_query->have_posts() ) : ?>
+				
+				<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
 		
 	<div class="col-md-12">
 	<div class="textoverimage">
-	<div class="zoom">
-	<?php 
-			$recent_posts = wp_get_recent_posts( $args );
-			foreach( $recent_posts as $recent )
-			{
-				?>
-					<img class="imagespb" src="<?php the_post_thumbnail_url(); ?>"> 
-				<?php
-			}
-		?>
+				
+			<img class="imagespb" src="<?php the_post_thumbnail_url(); ?>"> 
+	
 	<br/>
 	<br/>
-	</div>
 	<div class="textoverimage_texts">
 	<a href="ID4SPORTS.html">
-	<?php
-							$recent_posts = wp_get_recent_posts( $args );
-							foreach( $recent_posts as $recent )
-							{
-								echo '<h3 class="textoverimage_text">' ?> <?php the_title(); ?>  <?php echo '</h3>';
-							}
-							?>
-	<h5 class="textoverimage_smalltext"> Meertalige Magento 2 webshop met Gripp koppeling </h5>
+						
+			<h3 class="textoverimage_text"> <?php the_title(); ?> </h3>
+							
+							
+	<h5 class="textoverimage_smalltext"> <?php the_content(); ?> </h5>
 	<br/>
 	</a>
 	</div>	
 	</div>
 	</div>
 		
-		<?php
-				echo '';
-				endwhile;
+		<?php endwhile; ?>
 
-			// Reset Query
-			wp_reset_query();
-	
-		?>
-	
-<div class="row">
 
-</div>
+
+	<?php wp_reset_postdata(); ?>
+
+<?php else : ?>
+	<p><?php esc_html_e( 'Geen portfolio posts gevonden!' ); ?></p>
+<?php endif; ?>
+
+
+
 <div class="row">
+<?php 	
+$portfolio = array(
+				'posts_per_page'=>2,
+				'offset' => 0,
+				'category' => 0,
+				'orderby' => 'post_date',
+				'order' => 'DESC',
+				'include' => '',
+				'exclude' => '',
+				'meta_key' => '',
+				'meta_value' =>'',
+				'post_type' => 'portfolios',
+				'post_status' => 'draft, publish, future, pending, private',
+				'suppress_filters' => true
+				); 
+	
+				$posts_query = new WP_Query( $portfolio ); ?>
+
+				<?php if ( $posts_query->have_posts() ) : ?>
+				
+				<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
     <div class="col-md-6 col-sm-6">
     <div class="textoverimage">
-    <div class="zoom">
-		<img src="<?php bloginfo('stylesheet_directory');?>/images/foto1.jpg" class="imagespb" alt="discounts">
-	</div>
+		<img class="imagespb" src="<?php the_post_thumbnail_url(); ?>">
 	<div class="textoverimage_texts">
 	<a href="onlinediscounters.html">
-		<h3 class="textoverimage_text"> Online Discounters </h3>
-		<h5 class="textoverimage_smalltext"> Magento 2 multistore webshop </h5>
+		<h3 class="textoverimage_text"> <?php the_title(); ?> </h3>
+		<h5 class="textoverimage_smalltext"> <?php the_content(); ?> </h5>
 	</a>
 	</div>
 	</div>
 	</div>
-	<div class="col-md-6 col-sm-6">
-	<div class="textoverimage">
-	<div class="zoom">
-		<img src="<?php bloginfo('stylesheet_directory');?>/images/foto2.png" class="imagespb" alt="dentalunion">
-	</div>
-	<div class="textoverimage_texts">
-	<a href="dentalunion.html">
-		<h3 class="textoverimage_text"> Dental Union </h3>
-		<h5 class="textoverimage_smalltext">Magento 2 B2B webshop met diverse maatwerk functies</h5>
-	</a>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+	<?php endwhile; ?>
+	<?php wp_reset_postdata(); ?>
 
+<?php else : ?>
+	<p><?php esc_html_e( 'Geen portfolio posts gevonden!' ); ?></p>
+<?php endif; ?>
+	</div>
+</div>
 </div>
 <br/>
 <div class="blog">
@@ -302,7 +305,7 @@
 						
 					<div class="blog_square_white">
 
-					<p class="blog_square_text"> <?php the_title(); ?> <br/> <br/> <?php the_content_rss(); ?> </p>
+					<p class="blog_square_text_big"> <?php the_title(); ?> </p> <p class="blog_square_text">  <br/> <?php the_content_rss(); ?> </p>
 			
 				<br/>
 		

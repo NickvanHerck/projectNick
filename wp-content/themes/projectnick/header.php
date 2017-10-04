@@ -38,7 +38,35 @@
 			</div>
 		<div class="col-sm-6 col-md-6 col-lg-6">
 		<div class="header_pull_right"> 
-			<p class="header_text">Goedemorgen!</p>
+		<p class="header_text">
+			
+	<?php	
+			
+		date_default_timezone_set('Europe/Amsterdam');
+			
+		$time = date("H");
+		if ($time < "12") 
+		{
+			echo "Goedemorgen";
+		} 
+		
+		else if ($time >= "13" && $time < "17") 
+		{
+			echo "Goedemiddag";
+		} 
+		
+		else if ($time >= "17" && $time < "19") 
+		{
+			echo "Goedeavond";
+		} 
+		
+		else if ($time >= "19") 
+		{
+			echo "Goedenacht";
+		}
+    ?>
+    
+	</p>
 			<p class="navbarmenutext">
 			Heb je een vraag? Bel ons: 013 - 590 32 56
 			</p>
@@ -50,8 +78,10 @@
 		</div>
 	   </div>
 		 <div class="collapse" id="collapsing">
-			<div class="card card-body testtekst">
-				Dit is maar een test
+			<div class="card card-body">
+				<div class="navbar_style">
+				<?php wp_nav_menu( array( 'menus' => 'inspiration_concepts_menu' ) ); ?>
+				</div>
 			</div>
 		 </div>
 	</div>

@@ -297,32 +297,18 @@
 				
 				
 				<div class="blog_vlak">
-					<?php 
-					$recent_posts = wp_get_recent_posts( $args );
-							foreach( $recent_posts as $recent )
-							{
-								?>
+
 								<img alt="phonebox" class="phoneboxes" src="<?php the_post_thumbnail_url(); ?>">
-								<?php
-							}
-					?>
-					
+						
 					<div class="blog_square_white">
-						<?php
-							$recent_posts = wp_get_recent_posts( $args );
-							foreach( $recent_posts as $recent )
-							{
-								echo '<p class="blog_square_text">' ?> <?php the_title(); ?> <br/> <br/> <?php the_content_rss(); echo' </p>';
-							}
-						?>
+
+					<p class="blog_square_text"> <?php the_title(); ?> <br/> <br/> <?php the_content_rss(); ?> </p>
+			
 				<br/>
-			<?php 
-					$recent_posts = wp_get_recent_posts( $args );
-							foreach( $recent_posts as $recent )
-							{
-								echo '<p class="datumtekst">' ?> <?php the_date(); ?> <?php echo'| </p> <p class="blognaam">' ?> <?php the_author(); ?> <?php '</p>';
-							}
-			?>
+		
+					<p class="datumtekst"> <?php the_date(); ?> <?php echo'| </p> <p class="blognaam">' ?> <?php the_author(); ?> </p>
+			
+	
 			<br/>
 		</div>
 		<br/>

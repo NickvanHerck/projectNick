@@ -53,6 +53,13 @@ add_action( 'init', 'create_posttype' );
 add_theme_support( 'portfolio-thumbnails' ); 
 add_theme_support( 'menus' );
 
+register_nav_menu( 'menus', 'inspiration_concepts_menu' );
+
+
+
+/* walker code */
+
+
 
 
 ?>

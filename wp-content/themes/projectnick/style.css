@@ -61,14 +61,8 @@ ul
 {
 	font-weight: bold;
 	float: left;
+	font-size: 13px;
 	margin-right: 10px;
-}
-
-.menu
-{
-	text-decoration: none;
-	background-color: blue;
-	color: black;
 }
 
 .navbarmenutext
@@ -88,6 +82,8 @@ ul
 {
 	text-decoration: none;
 }
+
+
 
 .menu_text
 {

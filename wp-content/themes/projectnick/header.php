@@ -24,7 +24,7 @@
 </head>
 <body <?php body_class(); ?>>
 <header>
-	<div class="row no-gutters">
+	<div data-collapse="all" data-animation="default" class="row no-gutters">
 	 <div class="col-sm-6 col-md-6 col-lg-6">
 		<div class="pull-left">
 			<div class="logo">
@@ -71,73 +71,91 @@
 			Heb je een vraag? Bel ons: 013 - 590 32 56
 			</p>
 			 <p class="menu_text">MENU</p>
-			 <p data-toggle="collapse" data-target="#collapsing" class="menuiconleft">
+			 <a data-toggle="collapse" data-target="#collapsing" class="menuiconleft" onclick="navbarShow()">
 			 <img src="<?php bloginfo('stylesheet_directory');?>/images/menuicon.jpg" class="menu_icon" alt="menuicon">
-			 </p>
-			<div class="spaces"></div>		 
+			 </a>	 
 		</div>
 	   </div>
-		 <div class="collapse" id="collapsing">
-			<div class="card card-body">
+	   </div>
+		 <div data-ix="display-none-on-page-load" class="menu-content" id="menu-content">
+			<div class="w-row">
+			<div class="menu-left w-col w-col-6 w-col-medium-6">
+				<h1 class="title">
+					Waar ben je naar opzoek?
+				</h1>
+				<div class="w-row">
+					<div class="w-col w-col-6">
+						<a href="#" class="magento-link w-inline-block">
+							<img src="https://www.inspirationconcepts.nl/wp-content/themes/inspirationconcepts/assets/images/magento-logo.svg" width="342" height="100"/>
+						</a>
+					</div>
+					<div class="w-col w-col-6">
+						<a href="#" class="wordpress-link w-inline-block">
+							<img src="https://www.inspirationconcepts.nl/wp-content/themes/inspirationconcepts/assets/images/wordpress-logo.svg" width="391" height="100"/>
+						</a>
+					</div>
+				</div>
 				
-				<?php
-					class IC_Menu extends Walker_Nav_Menu {
-					public function start_lvl( &$output, $depth = 0, $args = array() ) {
-						$output .= '<ul>';
-					}
+			</div>
+			<div class="menu-right w-col w-col-6 w-col-medium-6">
+				<div class="container w-container">
+					<div class="menu-items">
+						<?php
+		
+							class IC_Menu extends Walker_Nav_Menu {
+							public function start_lvl( &$output, $depth = 0, $args = array() ) {
+								$output .= '<ul>';
+							}
 
-					public function end_lvl( &$output, $depth = 0, $args = array() ) {
-						$output .= '</ul>';
-					}
+							public function end_lvl( &$output, $depth = 0, $args = array() ) {
+								$output .= '</ul>';
+							}
 
-					public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-						$classes = array();
-						if( !empty( $item->classes ) ) {
-							$classes = (array) $item->classes;
+							public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+								$classes = array();
+								if( !empty( $item->classes ) ) {
+									$classes = (array) $item->classes;
+								}
+
+								$active_class = '';
+								if( in_array('current-menu-item', $classes) ) {
+									$active_class = ' class="test active"';
+								}else if( $active_class = !$active_class)  {
+									$active_class = ' class="test"';
+								}
+
+								$url = '';
+								if( !empty( $item->url ) ) {
+									$url = $item->url;
+								}
+
+								$output .= '<li'. $active_class . '><a href="' . $url . '">' . $item->title . ' </a></li>';
+							}
+
+							public function end_el( &$output, $item, $depth = 0, $args = array() ) {
+								$output .= '</li>';
+							}
 						}
+						?>
 
-						$active_class = '';
-						if( in_array('current-menu-item', $classes) ) {
-							$active_class = ' class="active"';
-						} else if( in_array('current-menu-parent', $classes) ) {
-							$active_class = ' class="active-parent"';
-						} else if( in_array('current-menu-ancestor', $classes) ) {
-							$active_class = ' class="active-ancestor"';
-						}
+						<?php
+							wp_nav_menu(array(
+								'theme_location' => 'menus', 'inspiration_concepts_menu',
+								'walker' => new IC_Menu(),
+								'container' => false,
+								'items_wrap' => '<nav id="%1$s"><ul>%3$s</ul></nav>'
 
-						$url = '';
-						if( !empty( $item->url ) ) {
-							$url = $item->url;
-						}
-
-						$output .= '<li'. $active_class . '><a href="' . $url . '">' . $item->title . '</a></li>';
-					}
-
-					public function end_el( &$output, $item, $depth = 0, $args = array() ) {
-						$output .= '</li>';
-					}
-				}
-				?>
-				
-				<?php
-				wp_nav_menu(array(
-					'theme_location' => 'menus', 'inspiration_concepts_menu',
-					'walker' => new IC_Menu(),
-					'container' => false,
-    				'items_wrap' => '<nav id="%1$s"><ul>%3$s</ul></nav>'
+							));
+						?>
+						
+					</div>
 					
-				));
+				</div>
+			</div>
 				
-				?>
+				
 				
 				
 			</div>
 		 </div>
-	</div>
 </header>
- 
-<!-- HERE GOES YOUR HEADER MARKUP, LIKE LOGO, MENU, SOCIAL ICONS AND MORE -->
-
-
- 
-<!-- DON'T FORGET TO CLOSE THE BODY TAG ON footer.php FILE -->

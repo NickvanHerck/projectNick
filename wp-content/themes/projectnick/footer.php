@@ -1,16 +1,18 @@
 
 <!-- .site-content -->
  
-<script>
+<script type="text/javascript">
+	(function($) {
 		$(function() {
 		$( 'ul.nav li' ).on( 'click', function() {
 				$( this ).parent().find( 'li.active' ).removeClass( 'active' );
 				$( this ).addClass( 'active' );
 			});
+		  });
 		});
 </script>
 			 
-<script>
+<script type="text/javascript">
 	
 function navbarShow() {
     var x = document.getElementById("menu-content");
@@ -20,7 +22,13 @@ function navbarShow() {
         x.style.display = "none";
     }
 }
-</script>			 
+</script>
+
+<script>
+function myFunction(x) {
+    x.classList.toggle("change");
+}
+</script>
  
 <footer id="colophon" class="site-footer">
  

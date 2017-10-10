@@ -71,13 +71,16 @@
 			Heb je een vraag? Bel ons: 013 - 590 32 56
 			</p>
 			 <p class="menu_text">MENU</p>
-			 <a data-toggle="collapse" data-target="#collapsing" class="menuiconleft" onclick="navbarShow()">
-			 <img src="<?php bloginfo('stylesheet_directory');?>/images/menuicon.jpg" class="menu_icon" alt="menuicon">
-			 </a>	 
+			 
+			 <div id="nav-icon1" class="containernavbar" data-toggle="collapse" data-target="#collapsing" onclick="myFunction(this);navbarShow()">
+			    <div class="bar1"></div>
+  				<div class="bar2"></div>
+  				<div class="bar3"></div>
+			  </div>	 
 		</div>
 	   </div>
 	   </div>
-		 <div data-ix="display-none-on-page-load" class="menu-content" id="menu-content">
+		 <div data-ix="display-none-on-page-load" class="menu-content" id="menu-content" style="display: none;">
 			<div class="w-row">
 			<div class="menu-left w-col w-col-6 w-col-medium-6">
 				<h1 class="title">
@@ -130,6 +133,7 @@
 								}
 
 								$output .= '<li'. $active_class . '><a href="' . $url . '">' . $item->title . ' </a></li>';
+								$output .= '</br></br>';
 							}
 
 							public function end_el( &$output, $item, $depth = 0, $args = array() ) {
